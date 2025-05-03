@@ -11,12 +11,15 @@ __pycache__/
 *.pyd
 .env
 *.zip
-*log
+*.log
+
 # General
 .DS_Store
 .idea/
 .vscode/
 
 # Additional
-sample_data/
 *.csv
+*.xlsx
+!sample_data/mock_data/mock_data.csv
+!logs/example_log.log
