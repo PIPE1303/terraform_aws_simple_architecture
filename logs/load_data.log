@@ -1,0 +1,36 @@
+2025-05-03 09:22:27,853 - INFO - Insertando dummy en d_time
+2025-05-03 09:22:28,064 - INFO - DUMMY_TIME_ID insertado en d_time
+2025-05-03 09:22:28,065 - INFO - Insertando dummy en d_week
+2025-05-03 09:22:28,164 - INFO - DUMMY_WEEK_ID insertado en d_week
+2025-05-03 09:22:28,164 - INFO - Insertando dummy en d_month
+2025-05-03 09:22:28,307 - INFO - DUMMY_MONTH_ID insertado en d_month
+2025-05-03 09:22:28,307 - INFO - Insertando dummy en d_weekday
+2025-05-03 09:22:28,408 - INFO - DUMMY_WEEKDAY_ID insertado en d_weekday
+2025-05-03 09:22:28,409 - INFO - Insertando dummy en d_year
+2025-05-03 09:22:28,573 - INFO - DUMMY_YEAR_ID insertado en d_year
+2025-05-03 09:22:28,579 - INFO - Cargando archivo sample_data\accounts\part-00000-tid-2834924781296170616-a9b7a53c-b8f1-417c-876b-22ce8ab4c825-11024507-1-c000.csv en tabla accounts
+2025-05-03 09:22:29,534 - INFO - Carga completada para sample_data\accounts\part-00000-tid-2834924781296170616-a9b7a53c-b8f1-417c-876b-22ce8ab4c825-11024507-1-c000.csv
+2025-05-03 09:22:29,535 - INFO - Cargando archivo sample_data\city\part-00000-tid-7257851286237664629-906ff0c6-51c7-4cdd-97cd-dc0aa92a92f1-11185485-1-c000.csv en tabla city
+2025-05-03 09:22:30,027 - INFO - Carga completada para sample_data\city\part-00000-tid-7257851286237664629-906ff0c6-51c7-4cdd-97cd-dc0aa92a92f1-11185485-1-c000.csv
+2025-05-03 09:22:30,027 - INFO - Cargando archivo sample_data\country\part-00000-tid-5054581782199228501-41100236-b09c-46a7-8442-8d968c697e9a-11286346-1-c000.csv en tabla country
+2025-05-03 09:22:30,519 - INFO - Carga completada para sample_data\country\part-00000-tid-5054581782199228501-41100236-b09c-46a7-8442-8d968c697e9a-11286346-1-c000.csv
+2025-05-03 09:22:30,519 - INFO - Cargando archivo sample_data\customers\part-00000-tid-2581180368179082894-038c4dab-1615-444a-994f-5a2107c4d9a8-11135734-1-c000.csv en tabla customers
+2025-05-03 09:22:31,344 - INFO - Carga completada para sample_data\customers\part-00000-tid-2581180368179082894-038c4dab-1615-444a-994f-5a2107c4d9a8-11135734-1-c000.csv
+2025-05-03 09:22:31,345 - INFO - Cargando archivo sample_data\d_month\part-00000-tid-1411108534556725179-0fbf435f-dd8b-411e-ae97-11e74b345b4f-10859988-1-c000.csv en tabla d_month
+2025-05-03 09:22:31,951 - INFO - Carga completada para sample_data\d_month\part-00000-tid-1411108534556725179-0fbf435f-dd8b-411e-ae97-11e74b345b4f-10859988-1-c000.csv
+2025-05-03 09:22:31,952 - INFO - Cargando archivo sample_data\d_time\part-00000-tid-2902183611695287462-3111e3e9-023d-4533-a7e5-d0b87fb1a808-10662337-1-c000.csv en tabla d_time
+2025-05-03 09:22:48,590 - INFO - Carga completada para sample_data\d_time\part-00000-tid-2902183611695287462-3111e3e9-023d-4533-a7e5-d0b87fb1a808-10662337-1-c000.csv
+2025-05-03 09:22:48,591 - INFO - Cargando archivo sample_data\d_week\part-00000-tid-8944900144231406848-ea4ff673-508c-46e0-ac10-e488037f37c5-10733320-1-c000.csv en tabla d_week
+2025-05-03 09:22:48,957 - INFO - Carga completada para sample_data\d_week\part-00000-tid-8944900144231406848-ea4ff673-508c-46e0-ac10-e488037f37c5-10733320-1-c000.csv
+2025-05-03 09:22:48,957 - INFO - Cargando archivo sample_data\d_weekday\part-00000-tid-1198883628307677355-d7f0c6f5-b5f5-40c6-9537-2951b88849eb-10926413-1-c000.csv en tabla d_weekday
+2025-05-03 09:22:49,318 - INFO - Carga completada para sample_data\d_weekday\part-00000-tid-1198883628307677355-d7f0c6f5-b5f5-40c6-9537-2951b88849eb-10926413-1-c000.csv
+2025-05-03 09:22:49,318 - INFO - Cargando archivo sample_data\d_year\part-00000-tid-5440254676189819830-69d9a28f-dbd2-48ca-9eca-66f1ddb276df-10961064-1-c000.csv en tabla d_year
+2025-05-03 09:22:49,680 - INFO - Carga completada para sample_data\d_year\part-00000-tid-5440254676189819830-69d9a28f-dbd2-48ca-9eca-66f1ddb276df-10961064-1-c000.csv
+2025-05-03 09:22:49,680 - INFO - Cargando archivo sample_data\pix_movements\part-00000-tid-8322739320471544484-12382b61-f87b-4388-931d-ec1681d2aad1-10545794-1-c000.csv en tabla pix_movements
+2025-05-03 09:22:55,423 - INFO - Carga completada para sample_data\pix_movements\part-00000-tid-8322739320471544484-12382b61-f87b-4388-931d-ec1681d2aad1-10545794-1-c000.csv
+2025-05-03 09:22:55,426 - INFO - Cargando archivo sample_data\state\part-00000-tid-2467726635302089596-e4fdd6ee-8624-4658-af6a-6098bc1c0825-11243350-1-c000.csv en tabla state
+2025-05-03 09:22:55,817 - INFO - Carga completada para sample_data\state\part-00000-tid-2467726635302089596-e4fdd6ee-8624-4658-af6a-6098bc1c0825-11243350-1-c000.csv
+2025-05-03 09:22:55,820 - INFO - Cargando archivo sample_data\transfer_ins\part-00000-tid-3939740088886661710-b68a1bdc-ca76-4934-b2fd-756b973d041f-10414417-1-c000.csv en tabla transfer_ins
+2025-05-03 09:23:03,417 - INFO - Carga completada para sample_data\transfer_ins\part-00000-tid-3939740088886661710-b68a1bdc-ca76-4934-b2fd-756b973d041f-10414417-1-c000.csv
+2025-05-03 09:23:03,417 - INFO - Cargando archivo sample_data\transfer_outs\part-00000-tid-3880462020784336524-8a5c83e1-e1e4-471e-9dbf-1b37babaff47-10468383-1-c000.csv en tabla transfer_outs
+2025-05-03 09:23:05,330 - INFO - Carga completada para sample_data\transfer_outs\part-00000-tid-3880462020784336524-8a5c83e1-e1e4-471e-9dbf-1b37babaff47-10468383-1-c000.csv

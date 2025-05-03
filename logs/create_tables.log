@@ -1,0 +1,95 @@
+2025-05-03 09:22:22,341 - INFO - Usando archivo DBML en: C:\Users\erycl\terraform_simple_architecture\scripts\..\dbml\tables_diagram.txt
+2025-05-03 09:22:23,457 - INFO - Ejecutando: DROP TABLE IF EXISTS country CASCADE;
+2025-05-03 09:22:23,693 - INFO - Ejecutando: CREATE TABLE "country" (
+  "country_id" varchar(128) PRIMARY KEY,
+  "country" varchar(128)
+);
+2025-05-03 09:22:23,784 - INFO - Ejecutando: DROP TABLE IF EXISTS state CASCADE;
+2025-05-03 09:22:23,941 - INFO - Ejecutando: CREATE TABLE "state" (
+  "state_id" varchar(128) PRIMARY KEY,
+  "state" varchar(128),
+  "country_id" varchar(128)
+);
+2025-05-03 09:22:24,062 - INFO - Ejecutando: DROP TABLE IF EXISTS city CASCADE;
+2025-05-03 09:22:24,167 - INFO - Ejecutando: CREATE TABLE "city" (
+  "city_id" varchar(128) PRIMARY KEY,
+  "city" varchar(128),
+  "state_id" varchar(128)
+);
+2025-05-03 09:22:24,269 - INFO - Ejecutando: DROP TABLE IF EXISTS customers CASCADE;
+2025-05-03 09:22:24,374 - INFO - Ejecutando: CREATE TABLE "customers" (
+  "customer_id" varchar(128) PRIMARY KEY,
+  "first_name" varchar(128),
+  "last_name" varchar(128),
+  "customer_city" varchar(128),
+  "country_name" varchar(128),
+  "cpf" varchar(128)
+);
+2025-05-03 09:22:24,574 - INFO - Ejecutando: DROP TABLE IF EXISTS accounts CASCADE;
+2025-05-03 09:22:24,727 - INFO - Ejecutando: CREATE TABLE "accounts" (
+  "account_id" varchar(128) PRIMARY KEY,
+  "customer_id" varchar(128),
+  "created_at" timestamp,
+  "status" varchar(128),
+  "account_branch" varchar(128),
+  "account_check_digit" varchar(128),
+  "account_number" varchar(128)
+);
+2025-05-03 09:22:24,806 - INFO - Ejecutando: DROP TABLE IF EXISTS transfer_ins CASCADE;
+2025-05-03 09:22:24,890 - INFO - Ejecutando: CREATE TABLE "transfer_ins" (
+  "id" varchar(128) PRIMARY KEY,
+  "account_id" varchar(128),
+  "amount" float,
+  "transaction_requested_at" varchar(128),
+  "transaction_completed_at" varchar(128),
+  "status" varchar(128)
+);
+2025-05-03 09:22:24,992 - INFO - Ejecutando: DROP TABLE IF EXISTS transfer_outs CASCADE;
+2025-05-03 09:22:25,096 - INFO - Ejecutando: CREATE TABLE "transfer_outs" (
+  "id" varchar(128) PRIMARY KEY,
+  "account_id" varchar(128),
+  "amount" float,
+  "transaction_requested_at" varchar(128),
+  "transaction_completed_at" varchar(128),
+  "status" varchar(128)
+);
+2025-05-03 09:22:25,293 - INFO - Ejecutando: DROP TABLE IF EXISTS pix_movements CASCADE;
+2025-05-03 09:22:25,370 - INFO - Ejecutando: CREATE TABLE "pix_movements" (
+  "id" varchar(128) PRIMARY KEY,
+  "account_id" varchar(128),
+  "in_or_out" varchar(128),
+  "pix_amount" float,
+  "pix_requested_at" varchar(128),
+  "pix_completed_at" varchar(128),
+  "status" varchar(128)
+);
+2025-05-03 09:22:25,449 - INFO - Ejecutando: DROP TABLE IF EXISTS d_month CASCADE;
+2025-05-03 09:22:25,533 - INFO - Ejecutando: CREATE TABLE "d_month" (
+  "month_id" varchar(128) PRIMARY KEY,
+  "action_month" varchar(128)
+);
+2025-05-03 09:22:25,706 - INFO - Ejecutando: DROP TABLE IF EXISTS d_year CASCADE;
+2025-05-03 09:22:25,812 - INFO - Ejecutando: CREATE TABLE "d_year" (
+  "year_id" varchar(128) PRIMARY KEY,
+  "action_year" varchar(128)
+);
+2025-05-03 09:22:25,911 - INFO - Ejecutando: DROP TABLE IF EXISTS d_time CASCADE;
+2025-05-03 09:22:26,013 - INFO - Ejecutando: CREATE TABLE "d_time" (
+  "time_id" varchar(128) PRIMARY KEY,
+  "action_timestamp" timestamp,
+  "week_id" varchar(128),
+  "month_id" varchar(128),
+  "year_id" varchar(128),
+  "weekday_id" varchar(128)
+);
+2025-05-03 09:22:26,264 - INFO - Ejecutando: DROP TABLE IF EXISTS d_week CASCADE;
+2025-05-03 09:22:26,341 - INFO - Ejecutando: CREATE TABLE "d_week" (
+  "week_id" varchar(128) PRIMARY KEY,
+  "action_week" varchar(128)
+);
+2025-05-03 09:22:26,423 - INFO - Ejecutando: DROP TABLE IF EXISTS d_weekday CASCADE;
+2025-05-03 09:22:26,529 - INFO - Ejecutando: CREATE TABLE "d_weekday" (
+  "weekday_id" varchar(128) PRIMARY KEY,
+  "action_weekday" varchar(128)
+);
+2025-05-03 09:22:26,743 - INFO - \u2714\ufe0f 26 sentencias ejecutadas correctamente.

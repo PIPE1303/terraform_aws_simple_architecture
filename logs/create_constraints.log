@@ -1,0 +1,41 @@
+2025-05-03 09:23:05,575 - INFO - Usando archivo DBML en: C:\Users\erycl\terraform_simple_architecture\scripts\..\dbml\tables_diagram.txt
+2025-05-03 09:23:06,499 - INFO - Actualizando NULLs en transfer_outs.transaction_requested_at \u2192 'not_applicable'
+2025-05-03 09:23:06,732 - INFO - Actualizando NULLs en transfer_outs.transaction_completed_at \u2192 'not_applicable'
+2025-05-03 09:23:06,980 - INFO - Actualizando NULLs en transfer_ins.transaction_requested_at \u2192 'not_applicable'
+2025-05-03 09:23:07,225 - INFO - Actualizando NULLs en transfer_ins.transaction_completed_at \u2192 'not_applicable'
+2025-05-03 09:23:07,549 - INFO - Actualizando NULLs en pix_movements.pix_requested_at \u2192 'not_applicable'
+2025-05-03 09:23:07,806 - INFO - Actualizando NULLs en pix_movements.pix_completed_at \u2192 'not_applicable'
+2025-05-03 09:23:08,177 - INFO - Ejecutando: ALTER TABLE state ADD FOREIGN KEY (country_id) REFERENCES country(country_id);
+2025-05-03 09:23:08,393 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE state ADD FOREIGN KEY (country_id) REFERENCES country(country_id);
+2025-05-03 09:23:08,393 - INFO - Ejecutando: ALTER TABLE city ADD FOREIGN KEY (state_id) REFERENCES state(state_id);
+2025-05-03 09:23:08,610 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE city ADD FOREIGN KEY (state_id) REFERENCES state(state_id);
+2025-05-03 09:23:08,610 - INFO - Ejecutando: ALTER TABLE customers ADD FOREIGN KEY (customer_city) REFERENCES city(city_id);
+2025-05-03 09:23:08,822 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE customers ADD FOREIGN KEY (customer_city) REFERENCES city(city_id);
+2025-05-03 09:23:08,822 - INFO - Ejecutando: ALTER TABLE accounts ADD FOREIGN KEY (customer_id) REFERENCES customers(customer_id);
+2025-05-03 09:23:09,037 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE accounts ADD FOREIGN KEY (customer_id) REFERENCES customers(customer_id);
+2025-05-03 09:23:09,038 - INFO - Ejecutando: ALTER TABLE transfer_ins ADD FOREIGN KEY (account_id) REFERENCES accounts(account_id);
+2025-05-03 09:23:09,291 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE transfer_ins ADD FOREIGN KEY (account_id) REFERENCES accounts(account_id);
+2025-05-03 09:23:09,292 - INFO - Ejecutando: ALTER TABLE transfer_outs ADD FOREIGN KEY (account_id) REFERENCES accounts(account_id);
+2025-05-03 09:23:09,520 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE transfer_outs ADD FOREIGN KEY (account_id) REFERENCES accounts(account_id);
+2025-05-03 09:23:09,520 - INFO - Ejecutando: ALTER TABLE pix_movements ADD FOREIGN KEY (account_id) REFERENCES accounts(account_id);
+2025-05-03 09:23:09,792 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE pix_movements ADD FOREIGN KEY (account_id) REFERENCES accounts(account_id);
+2025-05-03 09:23:09,792 - INFO - Ejecutando: ALTER TABLE transfer_outs ADD FOREIGN KEY (transaction_requested_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:10,528 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE transfer_outs ADD FOREIGN KEY (transaction_requested_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:10,528 - INFO - Ejecutando: ALTER TABLE transfer_outs ADD FOREIGN KEY (transaction_completed_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:11,257 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE transfer_outs ADD FOREIGN KEY (transaction_completed_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:11,257 - INFO - Ejecutando: ALTER TABLE transfer_ins ADD FOREIGN KEY (transaction_requested_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:12,777 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE transfer_ins ADD FOREIGN KEY (transaction_requested_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:12,778 - INFO - Ejecutando: ALTER TABLE transfer_ins ADD FOREIGN KEY (transaction_completed_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:14,346 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE transfer_ins ADD FOREIGN KEY (transaction_completed_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:14,347 - INFO - Ejecutando: ALTER TABLE pix_movements ADD FOREIGN KEY (pix_requested_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:15,335 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE pix_movements ADD FOREIGN KEY (pix_requested_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:15,335 - INFO - Ejecutando: ALTER TABLE pix_movements ADD FOREIGN KEY (pix_completed_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:16,193 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE pix_movements ADD FOREIGN KEY (pix_completed_at) REFERENCES d_time(time_id);
+2025-05-03 09:23:16,193 - INFO - Ejecutando: ALTER TABLE d_time ADD FOREIGN KEY (week_id) REFERENCES d_week(week_id);
+2025-05-03 09:23:16,908 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE d_time ADD FOREIGN KEY (week_id) REFERENCES d_week(week_id);
+2025-05-03 09:23:16,908 - INFO - Ejecutando: ALTER TABLE d_time ADD FOREIGN KEY (month_id) REFERENCES d_month(month_id);
+2025-05-03 09:23:17,782 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE d_time ADD FOREIGN KEY (month_id) REFERENCES d_month(month_id);
+2025-05-03 09:23:17,783 - INFO - Ejecutando: ALTER TABLE d_time ADD FOREIGN KEY (year_id) REFERENCES d_year(year_id);
+2025-05-03 09:23:18,527 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE d_time ADD FOREIGN KEY (year_id) REFERENCES d_year(year_id);
+2025-05-03 09:23:18,528 - INFO - Ejecutando: ALTER TABLE d_time ADD FOREIGN KEY (weekday_id) REFERENCES d_weekday(weekday_id);
+2025-05-03 09:23:19,156 - INFO - \u2714\ufe0f Sentencia ejecutada correctamente: ALTER TABLE d_time ADD FOREIGN KEY (weekday_id) REFERENCES d_weekday(weekday_id);
