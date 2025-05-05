@@ -23,3 +23,7 @@ __pycache__/
 *.xlsx
 !sample_data/mock_data/mock_data.csv
 !logs/example_log.log
+
+#Non functional scripts
+scripts/load_data_batches.py
+scripts/load_data.py

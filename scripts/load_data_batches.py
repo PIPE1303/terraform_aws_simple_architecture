@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import logging
 from psycopg2.extras import execute_values
 
-# Cargar variables de entorno
+# Load environment variables
 load_dotenv()
 
 bucket_name = os.getenv("BUCKET_NAME")
@@ -18,10 +18,10 @@ db_password = os.getenv("DB_PASSWORD")
 db_port = os.getenv("DB_PORT")
 delete_after_load = os.environ.get('DELETE_AFTER_LOAD', 'false').lower() == 'true'
 
-# Configurar logging
+# Configure logging
 logging.basicConfig(
     filename='load_data.log',
-    filemode='w',  # Sobrescribir en cada ejecución
+    filemode='w',  # Overwrite on each execution
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
@@ -31,14 +31,14 @@ def log(msg):
     logging.info(msg)
 
 def load_data_to_db():
-    # Conexión a S3
+    # Connect to S3
     s3_client = boto3.client('s3')
 
-    # Listar carpetas (prefijos de primer nivel)
+    # List folders (top-level prefixes)
     response = s3_client.list_objects_v2(Bucket=bucket_name, Delimiter='/')
 
     if 'CommonPrefixes' not in response:
-        log("No se encontraron carpetas en el bucket.")
+        log("No folders found in the bucket.")
         return
 
     for prefix in response['CommonPrefixes']:
@@ -46,7 +46,7 @@ def load_data_to_db():
         file_list = s3_client.list_objects_v2(Bucket=bucket_name, Prefix=prefix['Prefix'])
 
         if 'Contents' not in file_list:
-            log(f"No se encontraron archivos en la carpeta {table_name}")
+            log(f"No files found in folder {table_name}")
             continue
 
         for obj in file_list['Contents']:
@@ -55,10 +55,10 @@ def load_data_to_db():
             if key.endswith('/') or not key.endswith('.csv'):
                 continue
 
-            log(f"Procesando archivo {key} para tabla {table_name}")
+            log(f"Processing file {key} for table {table_name}")
 
             try:
-                # Descargar archivo desde S3
+                # Download file from S3
                 csv_obj = s3_client.get_object(Bucket=bucket_name, Key=key)
                 csv_data = csv_obj['Body'].read().decode('utf-8')
                 csv_file = StringIO(csv_data)
@@ -67,7 +67,7 @@ def load_data_to_db():
                 headers = next(csv_reader)
                 rows = list(csv_reader)
 
-                # Conectar a la base de datos
+                # Connect to the database
                 conn = psycopg2.connect(
                     host=db_host,
                     dbname=db_name,
@@ -83,14 +83,14 @@ def load_data_to_db():
                 )
 
                 conn.commit()
-                log(f"Archivo {key} cargado exitosamente en tabla {table_name}")
+                log(f"File {key} successfully loaded into table {table_name}")
 
                 if delete_after_load:
                     s3_client.delete_object(Bucket=bucket_name, Key=key)
-                    log(f"Archivo {key} eliminado de S3 tras carga")
+                    log(f"File {key} deleted from S3 after loading")
 
             except Exception as e:
-                log(f"ERROR al cargar {key}: {e}")
+                log(f"ERROR loading {key}: {e}")
                 conn.rollback()
             finally:
                 cur.close()
