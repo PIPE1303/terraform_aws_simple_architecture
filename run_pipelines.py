@@ -3,7 +3,7 @@ import argparse
 import os
 import logging
 
-# Configurar logging general
+# Configure general logging
 LOGS_DIR = os.path.join(os.path.dirname(__file__), 'logs')
 os.makedirs(LOGS_DIR, exist_ok=True)
 
@@ -15,6 +15,7 @@ logging.basicConfig(
 )
 
 def log(msg):
+    """Logs a message to both the console and the log file."""
     print(msg)
     logging.info(msg)
 
@@ -22,18 +23,20 @@ def log(msg):
 SCRIPTS_DIR = os.path.join(os.path.dirname(__file__), 'scripts')
 
 def run_script(script_name):
+    """Runs a Python script and logs its execution."""
     script_path = os.path.join(SCRIPTS_DIR, script_name)
-    log(f"▶️ Ejecutando {script_name}...")
+    log(f"Running {script_name}...")
     result = subprocess.run(["python", script_path])
     if result.returncode != 0:
-        log(f"❌ Error al ejecutar {script_name}")
+        log(f"Error running {script_name}")
         exit(result.returncode)
-    log(f"✔️ {script_name} ejecutado con éxito\n")
+    log(f"{script_name} executed successfully\n")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Pipeline para crear y poblar la base de datos.")
-    parser.add_argument('--upload', action='store_true', help="Ejecutar upload_to_s3.py al inicio")
+    """Main function to parse arguments and run the pipeline scripts."""
+    parser = argparse.ArgumentParser(description="Pipeline to create and populate the database.")
+    parser.add_argument('--upload', action='store_true', help="Run upload_to_s3.py at the beginning")
     args = parser.parse_args()
 
     if args.upload:

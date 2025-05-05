@@ -5,10 +5,10 @@ import re
 from dotenv import load_dotenv
 import logging
 
-# Cargar variables de entorno
+# Load environment variables
 load_dotenv()
 
-# Ruta absoluta a la carpeta 'logs' desde el script en 'scripts/'
+# Absolute path to the 'logs' directory from the script in 'scripts/'
 LOGS_DIR = os.path.join(os.path.dirname(__file__), '..', 'logs')
 os.makedirs(LOGS_DIR, exist_ok=True)
 
@@ -34,9 +34,9 @@ db_port = os.getenv("DB_PORT")
 
 def main():
     dbml_path = os.path.join(os.path.dirname(__file__), '..', 'dbml', 'tables_diagram.txt')
-    log(f"Usando archivo DBML en: {dbml_path}")
+    log(f"Using DBML file: {dbml_path}")
 
-    # Leer archivo DBML
+    # Read DBML file
     with open(dbml_path, 'r') as f:
         dbml_text = f.read()
 
@@ -44,13 +44,13 @@ def main():
 
     statements = []
 
-    # CREATE TABLE con DROP previo
+    # CREATE TABLE with DROP IF EXISTS before
     for table in dbml.tables:
         table_name = table.name
         statements.append(f'DROP TABLE IF EXISTS {table_name} CASCADE;')
         statements.append(table.sql)
 
-    # Conectar a la base de datos
+    # Connect to the database
     conn = psycopg2.connect(
         host=db_host,
         dbname=db_name,
@@ -62,13 +62,13 @@ def main():
 
     try:
         for stmt in statements:
-            log(f"Ejecutando: {stmt}")
+            log(f"Executing: {stmt}")
             cur.execute(stmt)
         conn.commit()
-        log(f"✔️ {len(statements)} sentencias ejecutadas correctamente.")
+        log(f"{len(statements)} statements executed successfully.")
     except Exception as e:
         conn.rollback()
-        log(f"❌ ERROR: {e}")
+        log(f"ERROR: {e}")
         raise e
     finally:
         cur.close()

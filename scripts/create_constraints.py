@@ -5,10 +5,10 @@ import re
 from dotenv import load_dotenv
 import logging
 
-# Cargar variables de entorno
+# Load environment variables
 load_dotenv()
 
-# Ruta absoluta a la carpeta 'logs' desde el script en 'scripts/'
+# Absolute path to the 'logs' directory from the script in 'scripts/'
 LOGS_DIR = os.path.join(os.path.dirname(__file__), '..', 'logs')
 os.makedirs(LOGS_DIR, exist_ok=True)
 
@@ -34,16 +34,15 @@ db_port = os.getenv("DB_PORT")
 
 def main():
     dbml_path = os.path.join(os.path.dirname(__file__), '..', 'dbml', 'tables_diagram.txt')
-    log(f"Usando archivo DBML en: {dbml_path}")
+    log(f"Using DBML file: {dbml_path}")
 
-    # Leer archivo DBML
+    # Read DBML file
     with open(dbml_path, 'r') as f:
         dbml_text = f.read()
 
     dbml = PyDBML(dbml_text)
 
     statements = []
-
 
     # FOREIGN KEYS
     for line in dbml_text.splitlines():
@@ -56,7 +55,7 @@ def main():
                 f'ALTER TABLE {table1} ADD FOREIGN KEY ({column1}) REFERENCES {table2}({column2});'
             )
 
-    # Conectar a la base de datos
+    # Connect to the database
     conn = psycopg2.connect(
         host=db_host,
         dbname=db_name,
@@ -68,7 +67,7 @@ def main():
 
     DUMMY_TIME_ID = 'not_applicable'
 
-    # Identificar columnas que apuntan a d_time.time_id
+    # Identify columns that reference d_time.time_id
     time_fk_columns = []
     for line in dbml_text.splitlines():
         if line.startswith('Ref:') and 'd_time.time_id' in line:
@@ -77,26 +76,27 @@ def main():
                 table, column = left.strip().split('.')
                 time_fk_columns.append((table, column))
 
-    # Reemplazar NULLs por dummy en tablas que referencian d_time.time_id
+    # Replace NULLs with dummy value in tables that reference d_time.time_id
     for table, column in time_fk_columns:
         try:
             update_stmt = f"UPDATE {table} SET {column} = %s WHERE {column} = 'None';"
-            log(f"Actualizando NULLs en {table}.{column} → '{DUMMY_TIME_ID}'")
+            log(f"Replacing NULLs in {table}.{column} → '{DUMMY_TIME_ID}'")
             cur.execute(update_stmt, (DUMMY_TIME_ID,))
             conn.commit()
         except Exception as e:
             conn.rollback()
-            log(f"❌ ERROR al actualizar NULLs en {table}.{column}: {e}")
+            log(f"ERROR while replacing NULLs in {table}.{column}: {e}")
 
+    # Execute FK constraint statements
     for stmt in statements:
         try:
-            log(f"Ejecutando: {stmt}")
+            log(f"Executing: {stmt}")
             cur.execute(stmt)
             conn.commit()
-            log(f"✔️ Sentencia ejecutada correctamente: {stmt}")
+            log(f"Statement executed successfully: {stmt}")
         except Exception as e:
-            conn.rollback()  # Revertir solo esta sentencia en caso de error
-            log(f"❌ ERROR al ejecutar: {stmt}. Error: {e}")
+            conn.rollback()
+            log(f"ERROR executing: {stmt}. Error: {e}")
 
     cur.close()
     conn.close()
