@@ -25,7 +25,7 @@ SCRIPTS_DIR = os.path.join(os.path.dirname(__file__), 'scripts')
 def run_script(script_name):
     """Runs a Python script and logs its execution."""
     script_path = os.path.join(SCRIPTS_DIR, script_name)
-    log(f"▶️ Running {script_name}...")
+    log(f"Running {script_name}...")
     result = subprocess.run(["python", script_path])
     if result.returncode != 0:
         log(f"Error running {script_name}")
