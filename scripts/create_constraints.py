@@ -80,7 +80,7 @@ def main():
     for table, column in time_fk_columns:
         try:
             update_stmt = f"UPDATE {table} SET {column} = %s WHERE {column} = 'None';"
-            log(f"Replacing NULLs in {table}.{column} → '{DUMMY_TIME_ID}'")
+            log(f"Replacing NULLs in {table}.{column} -> '{DUMMY_TIME_ID}'")
             cur.execute(update_stmt, (DUMMY_TIME_ID,))
             conn.commit()
         except Exception as e:
